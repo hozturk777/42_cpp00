@@ -12,7 +12,7 @@ class ToUpper {
 
 std::ostream& operator<<(std::ostream& os, const ToUpper& str){
 	std::string temp = str.getArgv();
-    for (size_t i = 0; temp[i]; ++i) {
+    for (size_t i = 0; temp[i]; i++) {
         os << (char)std::toupper((unsigned char)temp[i]);
     }
 	return os;
@@ -37,7 +37,7 @@ int	main(int ac, char **av)
 	return 0;
 }
 
-// std::ostream&: cout aslında bir ostream (output stream) nesnesidir. Fonksiyonun bunu referans olarak döndürmesi gerekir ki cout << k1 << k2; gibi zincirleme işlemler yapılabilsin.
+// std::ostream&: cout aslında bir ostream (output stream) nesnesidir. Fonksiyonun bunu referans olarak döndürmesi gerekir ki cout << var << var; gibi zincirleme işlemler yapılabilsin.
 // operator<<: Bu, C++'a "Ben << sembolünün davranışını değiştiriyorum" demenin yoludur
 // :: (Scope resolution) Kapsama Erismek orn: std::cout (standart kutuphanenin cout fonksiyonu)
 // << (Stream insertion) Ekleme operatoru, Sağındaki veriyi solundaki akışa(stream) gönderir.
