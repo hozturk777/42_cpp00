@@ -22,6 +22,6 @@ std::ostream& operator<<(std::ostream& os, const Column& col)
 	if(temp.length() > 10)
 		temp = temp.substr(0, 9) + ".";
 
-	os << std::setw(10) << std::right << temp;
+	os << std::setw(10) << temp;
 	return os;
 }
