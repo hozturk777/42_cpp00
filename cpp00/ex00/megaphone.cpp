@@ -10,7 +10,7 @@ class ToUpper {
 		std::string getArgv() const { return _argv; }
 };
 
-std::ostream& operator<<(std::ostream& os, const ToUpper& str){
+std::ostream& operator<<(std::ostream& os, const ToUpper& str){ // Ad-hoc Polimorfizm 
 	std::string temp = str.getArgv();
     for (size_t i = 0; temp[i]; i++) {
         os << (char)std::toupper((unsigned char)temp[i]);
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 		for (size_t i = 1; i < ac; i++)
 		{
 			ToUpper doit(av[i]);
-			std::cout << doit;
+			std::cout << doit; // ilk parametre ostream ikinci parametre toupper bu yüzden overloading olacak
 		}
 	}
 	std::cout << std::endl;
