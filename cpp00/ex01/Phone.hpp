@@ -13,7 +13,10 @@ class Phone{
 		Phone();
 		~Phone();
 
+		void getColumn();
 		void getPhoneBook();
+		void setPhoneBook();
+
 };
 
 #endif
