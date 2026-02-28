@@ -58,6 +58,25 @@ void Phone::getPhoneBook()
 	}
 }
 
+std::string trimmed(std::string _name)
+{
+	size_t i;
+	size_t e;
+
+	for (i = 0; i < _name.length(); i++)
+	{
+		if (_name[i] != ' ' && _name[i] != '\t' && _name[i] != '\n')
+			break;
+	}
+	for (e = _name.length() - 1; e >= 0; e--)
+	{
+		if (_name[e] != ' ' && _name[e] != '\t' && _name[i] != '\n')
+			break;
+	}
+	std::string temp = _name.substr(i, e - i + 1);
+	return (temp);
+}
+
 void Phone::setPhoneBook()
 {
 	std::string name;
@@ -75,6 +94,7 @@ void Phone::setPhoneBook()
 			break;	
 		std::cout << "Please enter a valid value" << std::endl;
 	}
+	name = trimmed(name);
 	while (true)
 	{
 		std::cout << "surName: ";
@@ -84,6 +104,7 @@ void Phone::setPhoneBook()
 			break;
 		std::cout << "Please enter a valid value" << std::endl;
 	}
+	surName = trimmed(surName);
 	while (true)
 	{
 		std::cout << "NickName: ";
@@ -93,6 +114,7 @@ void Phone::setPhoneBook()
 			break;
 		std::cout << "Please enter a valid value" << std::endl;
 	}
+	nickName = trimmed(nickName);
 	while (true)
 	{
 		std::cout << "Phone Number: ";
@@ -102,6 +124,7 @@ void Phone::setPhoneBook()
 			break;
 		std::cout << "Please enter a valid value" << std::endl;
 	}
+	phoneNumber = trimmed(phoneNumber);
 	while (true)
 	{
 		std::cout << "Darkest Secret: ";
@@ -111,6 +134,7 @@ void Phone::setPhoneBook()
 			break;
 		std::cout << "Please enter a valid value" << std::endl;
 	}
+	darkestSecret = trimmed(darkestSecret);
 	this->_person[_index].setFirstName(name);
 	this->_person[_index].setSurName(surName);
 	this->_person[_index].setNickName(nickName);
