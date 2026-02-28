@@ -3,8 +3,15 @@
 
 int main()
 {
-	Zombie z;
+	Zombie z("Huso");
 
-	z.setName("Huso");
 	z.announce();
+
+	Zombie* news = newZombie("FALAN");
+	news->announce();
+	delete(news);
+
+	randomChump("Random");
+
+	return (0);
 }
