@@ -1,7 +1,7 @@
 #include <iostream> // I/O stream std::cout icin kutuphane
 #include <string>
 
-class ToUpper {
+class MegaPhone {
 	private:
 		std::string _argv;
 
@@ -10,7 +10,7 @@ class ToUpper {
 		std::string getArgv() const { return _argv; }
 };
 
-std::ostream& operator<<(std::ostream& os, const ToUpper& str){ // Ad-hoc Polimorfizm 
+std::ostream& operator<<(std::ostream& os, const MegaPhone& str){ // Ad-hoc Polimorfizm 
 	std::string temp = str.getArgv();
     for (size_t i = 0; temp[i]; i++) {
         os << (char)std::toupper((unsigned char)temp[i]);
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 	{
 		for (size_t i = 1; i < ac; i++)
 		{
-			ToUpper doit(av[i]);
+			MegaPhone doit(av[i]);
 			std::cout << doit; // ilk parametre ostream ikinci parametre toupper bu yüzden overloading olacak
 		}
 	}
