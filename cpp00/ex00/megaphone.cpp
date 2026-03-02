@@ -1,43 +1,24 @@
-#include <iostream> // I/O stream std::cout icin kutuphane
+#include <iostream>
 #include <string>
 
-class MegaPhone {
-	private:
-		std::string _argv;
-
-	public:
-		ToUpper(std::string p_argv) : _argv(p_argv) {}
-		std::string getArgv() const { return _argv; }
-};
-
-std::ostream& operator<<(std::ostream& os, const MegaPhone& str){ // Ad-hoc Polimorfizm 
-	std::string temp = str.getArgv();
-    for (size_t i = 0; temp[i]; i++) {
-        os << (char)std::toupper((unsigned char)temp[i]);
-    }
-	return os;
-}
-
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
-	if (ac == 1)
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-		return (0);
-	}
-	else
-	{
-		for (size_t i = 1; i < ac; i++)
-		{
-			MegaPhone doit(av[i]);
-			std::cout << doit; // ilk parametre ostream ikinci parametre toupper bu yüzden overloading olacak
-		}
-	}
-	std::cout << std::endl;
-	return 0;
+    if (ac == 1)
+    {
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+        return (0);
+    }
+    for (int i = 1; i < ac; i++)
+    {
+        std::string current_arg = av[i];
+        
+        for (size_t j = 0; j < current_arg.length(); j++)
+        {
+            std::cout << (char)std::toupper((unsigned char)current_arg[j]);
+        }
+    }
+    std::cout << std::endl;
+    return (0);
 }
-
-// std::ostream&: cout aslında bir ostream (output stream) nesnesidir. Fonksiyonun bunu referans olarak döndürmesi gerekir ki cout << var << var; gibi zincirleme işlemler yapılabilsin.
-// operator<<: Bu, C++'a "Ben << sembolünün davranışını değiştiriyorum" demenin yoludur
 // :: (Scope resolution) Kapsama Erismek orn: std::cout (standart kutuphanenin cout fonksiyonu)
 // << (Stream insertion) Ekleme operatoru, Sağındaki veriyi solundaki akışa(stream) gönderir.
