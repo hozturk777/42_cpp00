@@ -91,50 +91,65 @@ void Phone::setPhoneBook()
 		if (!std::getline(std::cin, name))
 			return;
 		if (!name.empty())
-			break;	
+		{
+			name = trimmed(name);
+			if (!name.empty())
+				break;
+		}
 		std::cout << "Please enter a valid value" << std::endl;
 	}
-	name = trimmed(name);
 	while (true)
 	{
 		std::cout << "surName: ";
 		if (!std::getline(std::cin, surName))
 			return;
 		if (!surName.empty())
-			break;
+		{
+			surName = trimmed(surName);
+			if (!surName.empty())
+				break;
+		}
 		std::cout << "Please enter a valid value" << std::endl;
 	}
-	surName = trimmed(surName);
 	while (true)
 	{
 		std::cout << "NickName: ";
 		if (!std::getline(std::cin, nickName))
 			return ;
 		if (!nickName.empty())
-			break;
+		{
+			nickName = trimmed(nickName);
+			if (!nickName.empty())
+				break;
+		}
 		std::cout << "Please enter a valid value" << std::endl;
 	}
-	nickName = trimmed(nickName);
 	while (true)
 	{
 		std::cout << "Phone Number: ";
 		if (!std::getline(std::cin, phoneNumber))
 			return;
 		if (!phoneNumber.empty())
-			break;
+		{
+			phoneNumber = trimmed(phoneNumber);
+			if (!phoneNumber.empty())
+				break;
+		}
 		std::cout << "Please enter a valid value" << std::endl;
 	}
-	phoneNumber = trimmed(phoneNumber);
 	while (true)
 	{
 		std::cout << "Darkest Secret: ";
 		if (!std::getline(std::cin, darkestSecret))
 			return;
 		if (!darkestSecret.empty())
-			break;
+		{
+			darkestSecret = trimmed(darkestSecret);
+			if (!darkestSecret.empty())
+				break;
+		}
 		std::cout << "Please enter a valid value" << std::endl;
 	}
-	darkestSecret = trimmed(darkestSecret);
 	this->_person[_index].setFirstName(name);
 	this->_person[_index].setSurName(surName);
 	this->_person[_index].setNickName(nickName);

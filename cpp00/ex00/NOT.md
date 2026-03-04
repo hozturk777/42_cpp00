@@ -17,4 +17,4 @@ Yorum satırına yazdığın gibi, bu egzersizlerin amacı sana Ad-hoc Polimorfi
 Teknik Not:
 Yazdığın koddaki şu kısım oldukça profesyonel bir dokunuş:
 os << (char)std::toupper((unsigned char)temp[i]);
-unsigned char cast işlemi, ASCII dışı karakterlerde std::toupper fonksiyonunun tanımsız davranış sergilemesini (undefined behavior) engeller; bu yüzden doğru bir yaklaşımdır.
+unsigned char cast işlemi, ASCII dışı karakterlerde std::toupper fonksiyonunun tanımsız davranış sergilemesini (undefined behavior) engeller; bu yüzden doğru bir yaklaşımdır.o

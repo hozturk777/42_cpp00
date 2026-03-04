@@ -11,7 +11,6 @@ int main(int ac, char **av)
     for (int i = 1; i < ac; i++)
     {
         std::string current_arg = av[i];
-        
         for (size_t j = 0; j < current_arg.length(); j++)
         {
             std::cout << (char)std::toupper((unsigned char)current_arg[j]);
