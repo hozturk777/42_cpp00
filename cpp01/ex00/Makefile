@@ -1,6 +1,6 @@
 NAME        = zombie
 CC          = c++
-FLAGS       = -Wall -Wextra -Werror -std=c++98
+CFLAGS       = -Wall -Wextra -Werror -std=c++98
 RM          = rm -rf
 
 SRCS        = main.cpp \
@@ -16,7 +16,7 @@ RESET       = \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)$(NAME) başarıyla derlendi!$(RESET)"
 
 clean:

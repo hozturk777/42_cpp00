@@ -1,11 +1,12 @@
-NAME        = zombie
-CC          = g++
-CFLAGS       = -Wall -Wextra -Werror -std=c++98
+NAME        = harlFilter
+CC          = c++
+FLAGS       = -Wall -Wextra -Werror -std=c++98
 RM          = rm -rf
 
 SRCS        = main.cpp \
-				Zombie.cpp \
-				zombieHorde.cpp \
+				Harl.cpp \
+#				newZombie.cpp \
+#				randomChump.cpp
 
 OBJS        = $(SRCS:.cpp=.o) 
 
@@ -15,7 +16,7 @@ RESET       = \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)$(NAME) başarıyla derlendi!$(RESET)"
 
 clean:

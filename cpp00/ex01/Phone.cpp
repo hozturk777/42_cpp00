@@ -13,7 +13,7 @@ Phone::~Phone()
 {}
 
 
-void Phone::getColumn() // stream insertion(<<) overloading ederek yazdırılacak
+void Phone::getColumn()
 {
 	std::cout << "|" << Column("index");
 	std::cout << "|" << Column("Name");
@@ -50,7 +50,6 @@ void Phone::getPhoneBook()
 		std::cout << "PhoneNumber: " << this->_person[i].getPhoneNumber() << std::endl;
 		std::cout << "DarkestSecret: " << this->_person[i].getDarkestSecret() << std::endl;
 		std::cout << "----------------------" << std::endl;
-		//std::cout << "|" << std::endl;
 	}
 	else
 	{
