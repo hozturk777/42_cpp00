@@ -10,7 +10,7 @@ class Weapon{
 		Weapon(std::string _type);
 		~Weapon();
 
-		const std::string& getType() const; // Dönen referans'da const olacak // const std::string& dönersen, sadece o verinin "takma adını" (adresini) vermiş olursun; bu da özellikle uzun metinlerde belleği ve işlemciyi yormaz.
+		const std::string& getType() const;
 		void setType(std::string _type);
 };
 

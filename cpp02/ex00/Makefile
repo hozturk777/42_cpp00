@@ -5,8 +5,6 @@ RM          = rm -rf
 
 SRCS        = main.cpp \
 				Fixed.cpp \
-#				newZombie.cpp \
-#				randomChump.cpp
 
 OBJS        = $(SRCS:.cpp=.o) 
 
