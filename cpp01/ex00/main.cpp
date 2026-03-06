@@ -1,6 +1,5 @@
 #include "Zombie.hpp"
 
-
 int main()
 {
 	Zombie z("Huso");
@@ -12,6 +11,5 @@ int main()
 	delete(news);
 
 	randomChump("Random");
-
 	return (0);
 }

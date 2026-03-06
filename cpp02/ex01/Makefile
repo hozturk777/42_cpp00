@@ -1,11 +1,10 @@
-NAME        = zombie
+NAME        = fixed
 CC          = c++
-CFLAGS      = -Wall -Wextra -Werror -std=c++98
+FLAGS       = -Wall -Wextra -Werror -std=c++98
 RM          = rm -rf
 
 SRCS        = main.cpp \
-				Zombie.cpp \
-				zombieHorde.cpp \
+				Fixed.cpp \
 
 OBJS        = $(SRCS:.cpp=.o) 
 
@@ -15,7 +14,7 @@ RESET       = \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)$(NAME) başarıyla derlendi!$(RESET)"
 
 clean:

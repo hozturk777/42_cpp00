@@ -27,7 +27,7 @@ std::string replaceLine(const std::string& line, const std::string& s1, const st
 int main(int ac, char **av)
 {
 	if (ac != 4) {
-        std::cerr << "Usage: ./replace <filename> <s1> <s2>" << std::endl;
+        std::cout << "Usage: ./replace <filename> <s1> <s2>" << std::endl;
         return 1;
     }
 
@@ -35,7 +35,7 @@ int main(int ac, char **av)
 	std::string s1 = av[2];
 	std::string s2 = av[3];
 
-	std::ifstream ifs(fname.c_str()); // c.str nedir ?
+	std::ifstream ifs(fname.c_str()); // c.str nedir ? C++ std::string nesnesini eski usul C-style bir karakter dizisine (const char*) dönüştürür.
 	if (!ifs.is_open())
 	{
 		std::cout << "Error: Could not open file:" << fname << std::endl;
@@ -43,7 +43,7 @@ int main(int ac, char **av)
 	}
 	
 	std::ofstream ofs((fname + ".replace").c_str());
-	if (!ifs.is_open())
+	if (!ofs.is_open())
 	{
 		std::cout << "Error: Could not create output file:" << std::endl;
 		ifs.close();
@@ -56,7 +56,6 @@ int main(int ac, char **av)
 		ofs << replaceLine(line, s1, s2);
 		if (!ifs.eof())
 			ofs << "\n";
-		
 	}
 	
 	ifs.close();
