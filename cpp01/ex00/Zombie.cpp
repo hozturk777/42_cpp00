@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+Zombie::Zombie()
+{
+}
+
 Zombie::Zombie(std::string _name)
 {
 	this->_name = _name;
@@ -10,16 +14,6 @@ Zombie::~Zombie()
 {
     std::cout << this->_name << ": has been destroyed." << std::endl;
 }
-
-//std::string Zombie::getName() const
-//{
-//	return (this->_name);
-//}
-
-//void Zombie::setName(std::string _name)
-//{
-//	this->_name = _name;
-//}
 
 void Zombie::announce( void )
 {
