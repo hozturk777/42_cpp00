@@ -30,6 +30,7 @@ int Fixed::toInt(void) const {
 }
 
 int Fixed::getRawBits(void) const {
+	std::cout << "getRawBits member funciton called" << std::endl;
     return this->_num;
 }
 
