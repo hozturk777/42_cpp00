@@ -3,23 +3,17 @@
 #include <cmath>
 
 Fixed::Fixed() : _num(0){
-	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int n){
-	std::cout << "Int constructor called" << std::endl;
-	// 8 bit sola kaydırarak kesirli kısma yer açtık
 	this->_num = n << _bits; 
 }
 
 Fixed::Fixed(const float f){
-	std::cout << "Float constructor called" << std::endl;
-	// 42.42 x 256 = 10859.52 (roundf bunu 10860'a yuvarlar)
 	this->_num = roundf(f * (1 << _bits));
 }
 
 Fixed::Fixed(const Fixed &copy){
-	std::cout << "Copy constructor called" << std::endl;
 	*this = copy;
 }
 
@@ -64,14 +58,12 @@ Fixed Fixed::operator-(const Fixed &copy) const {
 }
 
 Fixed Fixed::operator*(const Fixed &copy) const {
-    // İki fixed çarpıldığında 2^8 * 2^8 = 2^16 olur. 
-    // Bu yüzden float üzerinden çarpıp geri dönmek en güvenli yoldur.
     return Fixed(this->toFloat() * copy.toFloat());
 }
 
 Fixed Fixed::operator/(const Fixed &copy) const {
     if (copy.getRawBits() == 0) {
-        std::cerr << "Error: Division by zero" << std::endl;
+        std::cout << "Error: Division by zero" << std::endl;
         return Fixed(0);
     }
     return Fixed(this->toFloat() / copy.toFloat());
@@ -85,32 +77,27 @@ Fixed& Fixed::operator=(const Fixed &copy){
 }
 
 
-// Pre-increment (++a)
 Fixed& Fixed::operator++(void) {
     this->_num++;
     return *this;
 }
 
-// Post-increment (a++)
 Fixed Fixed::operator++(int) {
     Fixed temp(*this);
     this->_num++;
     return temp;
 }
 
-// Pre-decrement (--a)
 Fixed& Fixed::operator--(void) {
     this->_num--;
     return *this;
 }
 
-// Post-decrement (a--)
 Fixed Fixed::operator--(int) {
     Fixed temp(*this);
     this->_num--;
     return temp;
 }
-
 
 Fixed& Fixed::min(Fixed &a, Fixed &b) {
     return (a < b) ? a : b;

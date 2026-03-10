@@ -33,10 +33,10 @@ class Fixed
 		Fixed   operator*(const Fixed &copy) const;
 		Fixed   operator/(const Fixed &copy) const;
 
-		Fixed&  operator++(void);       // ++pre
-		Fixed   operator++(int);        // post++
-		Fixed&  operator--(void);       // --pre
-		Fixed   operator--(int);        // post--
+		Fixed&  operator++(void);
+		Fixed   operator++(int); 
+		Fixed&  operator--(void);
+		Fixed   operator--(int);
 
 		static Fixed& min(Fixed &a, Fixed &b);
 		static const Fixed& min(const Fixed &a, const Fixed &b);
@@ -45,7 +45,5 @@ class Fixed
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& obj);
-
-
 
 #endif
