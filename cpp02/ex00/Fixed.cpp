@@ -12,7 +12,7 @@ Fixed::Fixed(const Fixed &copy){
 
 Fixed& Fixed::operator=(const Fixed &copy){
 	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &copy)
+	if (this != &copy) // Olmadığı durumda a = a durumunda atama yapmadan a verisi siliniyor veri çöpe gidiyor
 		this->_num = copy.getRawBits();
 	return *this;
 }
