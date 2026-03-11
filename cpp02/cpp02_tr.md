@@ -246,7 +246,7 @@ tekrar takılıyorum. Başarısız oluyorum.
 
 # Alıştırma 00: Ortodoks Kanonik Formda
 
-# İlk Sınıfım
+# İlk Sınıfım 
 
 ```
 Alıştırma: 00

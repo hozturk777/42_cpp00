@@ -44,7 +44,7 @@ ClapTrap::~ClapTrap(){
 }
 
 void ClapTrap::attack(const std::string& target) {
-    if (this->_hitPoints == 0 || this->_energyPoints == 0) {
+    if (this->_hitPoints <= 0 || this->_energyPoints <= 0) {
         std::cout << RED"ClapTrap " << this->_name << " is out of juice/HP and can't attack!" RESET<< std::endl;
         return;
     }
