@@ -5,8 +5,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::cout << GREEN"ScavTrap Default constructor called" RESET<< std::endl;
 
-	this->_name = "Huso";
-	this->_hitPoints = ClapTrap::_hitPoints;
+	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
 }
@@ -15,8 +14,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << GREEN"ScavTrap Constructor with name called" RESET<< std::endl;
 
-	this->_name = name;
-	this->_hitPoints = ClapTrap::_hitPoints;
+	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
 }

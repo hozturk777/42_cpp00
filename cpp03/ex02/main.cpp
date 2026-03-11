@@ -1,34 +1,36 @@
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 #include <iostream>
 
 int main() {
-    std::cout << "--- 1. Konstruktor Zinciri Testi ---" << std::endl;
-    // ScavTrap olusturuldugunda once ClapTrap'in olustugu gorulmeli
-    ScavTrap scav("SC4V-TP");
+    std::cout << "--- 1. FragTrap Konstruktor Zinciri Testi ---" << std::endl;
+    FragTrap frag("FR4G-TP");
     std::cout << std::endl;
 
-    std::cout << "--- 2. Temel Istatistik ve Saldiri Testi ---" << std::endl;
-    // ScavTrap'in kendine has saldiri mesaji ve hasari (20) olmali
-    scav.attack("Vahsi Skag");
-    scav.takeDamage(30);
-    scav.beRepaired(20);
+    std::cout << "--- 2. FragTrap Istatistik ve Saldiri Testi ---" << std::endl;
+    frag.attack("Handsome Jack");
+    frag.takeDamage(50);
+    frag.beRepaired(25);
     std::cout << std::endl;
 
-    std::cout << "--- 3. Ozel Yetenek Testi ---" << std::endl;
-    // ScavTrap'in ozel Gatekeeper modu
-    scav.guardGate();
+    std::cout << "--- 3. FragTrap Ozel Yetenek (High Five) Testi ---" << std::endl;
+    frag.highFivesGuys();
     std::cout << std::endl;
 
-    std::cout << "--- 4. Enerji ve Can Tukenme Testi ---" << std::endl;
-    // Enerjisi veya cani biten robot aksiyon alamaz
-    ScavTrap weakBot("YorgunRobot");
-    for (int i = 0; i < 51; i++) {
-        weakBot.attack("Hedef Tahtasi");
+    std::cout << "--- 4. FragTrap Enerji Tukenme Testi ---" << std::endl;
+    FragTrap staminaBot("StaminaBot");
+    for (int i = 0; i < 101; i++) {
+        staminaBot.attack("Kum Torbasi");
     }
-    weakBot.beRepaired(10); // Enerji bittigi icin calismamali
+    staminaBot.highFivesGuys();
     std::cout << std::endl;
 
-    std::cout << "--- 5. Destruktor Zinciri Testi ---" << std::endl;
-    // Yok edilme sirasi olusmanin tam tersi olmali
+    std::cout << "--- 5. FragTrap Olum ve Aksiyon Testi ---" << std::endl;
+    FragTrap deadBot("GuleGule");
+    deadBot.takeDamage(150); 
+    deadBot.attack("Hayalet"); 
+    deadBot.highFivesGuys(); 
+    std::cout << std::endl;
+
+    std::cout << "--- 6. FragTrap Destruktor Zinciri Testi ---" << std::endl;
     return 0;
 }
