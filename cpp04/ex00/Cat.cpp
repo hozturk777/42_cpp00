@@ -2,6 +2,7 @@
 #include <iostream>
 
 Cat::Cat() {
+	this->_type = "Cat";
     std::cout << GOLD"[Cat] Default Constructor called" RESET<< std::endl;
 }
 

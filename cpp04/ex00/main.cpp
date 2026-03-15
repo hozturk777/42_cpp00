@@ -13,8 +13,8 @@ int main(){
 
 	WrongAnimal* cat = new WrongCat(); // Upcasting
 
-	cat->makeSound(); // Static Binding (WrongAnimal'ın makesound'u çalışır)
-	delete cat; // WrongAnimal destructor'ı çalışır çünkü
+	cat->makeSound();
+	delete cat;
 	
 	std::cout << "--------------------------------------" << std::endl;
 

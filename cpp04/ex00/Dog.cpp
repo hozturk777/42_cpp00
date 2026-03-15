@@ -2,6 +2,7 @@
 #include <iostream>
 
 Dog::Dog() {
+	this->_type = "Dog";
     std::cout << GOLD"[Dog] Default Constructor called" RESET<< std::endl;
 }
 

@@ -3,6 +3,10 @@
 
 Brain::Brain() {
     std::cout << "Brain Default Constructor called" << std::endl;
+	for (size_t i = 0; i < 100; i++)
+	{
+		this->ideas[i] = "Brainzzz";
+	}
 }
 
 Brain::Brain(const Brain& copy) {
