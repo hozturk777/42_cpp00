@@ -17,7 +17,7 @@ class Bureaucrat
 		int					_grade;
 	public:
 		Bureaucrat();
-		Bureaucrat(const std::string name, int grade);
+		Bureaucrat(const std::string& name, int grade); // Name'in ref olma sebebi const olduğu için gereksiz değişken oluşturmamak için
 		Bureaucrat(const Bureaucrat& copy);
 		Bureaucrat& operator=(const Bureaucrat& copy);
 		~Bureaucrat();
@@ -30,12 +30,15 @@ class Bureaucrat
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();
-		};
+		}; // Nested class
 
 		class GradeTooLowException : public std::exception {
 			public:
 				virtual const char* what() const throw();
-		};
+		}; // Nested class
+
 };
+
+std::ostream&	operator<<(std::ostream& os, const Bureaucrat& b);
 
 #endif
