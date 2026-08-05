@@ -17,7 +17,7 @@ class Bureaucrat
 		int					_grade;
 	public:
 		Bureaucrat();
-		Bureaucrat(const std::string& name, int grade);
+		Bureaucrat(const std::string& name, int grade); // Name'in ref olma sebebi const olduğu için gereksiz değişken oluşturmamak için
 		Bureaucrat(const Bureaucrat& copy);
 		Bureaucrat& operator=(const Bureaucrat& copy);
 		~Bureaucrat();
