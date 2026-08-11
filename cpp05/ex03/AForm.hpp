@@ -1,5 +1,5 @@
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include <string>
 #include <exception>
@@ -7,19 +7,19 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 	private:
 		const std::string	_name;
 		bool				_isSigned;
-		const int			_gradeToSign; // Formu imzalamak için min yetki
-		const int			_gradeToExecute; // Formu execute edebilmek için min yetki
+		const int			_gradeToSign;
+		const int			_gradeToExecute;
 	public:
-		Form();
-		Form(const std::string& name, int gradeToSign, int gradeToExecute);
-		Form(const Form& copy);
-		Form& operator=(const Form& copy);
-		~Form();
+		AForm();
+		AForm(const std::string& name, int gradeToSign, int gradeToExecute);
+		AForm(const AForm& copy);
+		AForm& operator=(const AForm& copy);
+		virtual ~AForm();
 
 		std::string	getName() const;
 		bool		getIsSigned() const;
@@ -27,6 +27,7 @@ class Form
 		int			getGradeToExecute() const;
 
 		void	beSigned(const Bureaucrat& bureaucrat);
+		void	execute(const Bureaucrat& executor) const;
 
 		class GradeTooHighException : public std::exception {
 			public:
@@ -37,8 +38,16 @@ class Form
 			public:
 				virtual const char* what() const throw();
 		};
+
+		class FormNotSignedException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+	protected:
+		virtual void	executeAction() const = 0;
 };
 
-std::ostream&	operator<<(std::ostream& os, const Form& form);
+std::ostream&	operator<<(std::ostream& os, const AForm& form);
 
 #endif
