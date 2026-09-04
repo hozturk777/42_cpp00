@@ -5,7 +5,7 @@
 #include <exception>
 #include <iostream>
 
-class Bureaucrat;
+class Bureaucrat; // Incomplete type nesne oluşturamaz ve attributelere ulaşamazsın
 
 class Form
 {
