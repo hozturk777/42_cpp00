@@ -8,9 +8,9 @@ Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name) {
-	if (grade > 150)
+	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
-	else if (grade < 1)
+	else if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
 	this->_grade = grade;
 	std::cout << GOLD"[Bureaucrat] Parameterized Constructor called" RESET<< std::endl;
