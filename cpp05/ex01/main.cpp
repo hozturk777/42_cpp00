@@ -9,9 +9,9 @@ int main()
 	Bureaucrat femo(memo);
 	memo.decGrade();
 	femo.incGrade();
-	std::cout << huso << std::endl;
-	std::cout << memo << std::endl;
-	std::cout << femo << std::endl;
+	//std::cout << huso << std::endl;
+	//std::cout << memo << std::endl;
+	//std::cout << femo << std::endl;
 
 	std::cout << "----- Form tests -----" << std::endl;
 
