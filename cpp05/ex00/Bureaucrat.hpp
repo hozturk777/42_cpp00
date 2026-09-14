@@ -37,7 +37,6 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw();
 		}; // Nested class
-
 };
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& b);
