@@ -1,6 +1,4 @@
 #include "Bureaucrat.hpp"
-#include <iostream>
-#include <string>
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {
     std::cout << GOLD"[Bureaucrat] Default Constructor called" RESET<< std::endl;

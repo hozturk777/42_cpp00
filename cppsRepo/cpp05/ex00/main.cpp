@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include <iostream>
 
 int main()
 {
@@ -18,7 +17,7 @@ int main()
 		Bureaucrat invalid("Invalid", 151);
 		(void)invalid;
 	} catch (std::exception& e) {
-		std::cout << "Caught: " << e.what() << std::endl;
+		std::cout << "Invalid: " << e.what() << std::endl;
 	}
 
 	std::cout << "----- Gecersiz grade ile constructor (too low) -----" << std::endl;
@@ -26,7 +25,7 @@ int main()
 		Bureaucrat invalid("Invalid", 0);
 		(void)invalid;
 	} catch (std::exception& e) {
-		std::cout << "Caught: " << e.what() << std::endl;
+		std::cout << "Invalid: " << e.what() << std::endl;
 	}
 
 	std::cout << "----- Sinirda incGrade (grade 1 -> too high) -----" << std::endl;
@@ -34,7 +33,7 @@ int main()
 		Bureaucrat top("Top", 1);
 		top.incGrade();
 	} catch (std::exception& e) {
-		std::cout << "Caught: " << e.what() << std::endl;
+		std::cout << "Top: " << e.what() << std::endl;
 	}
 
 	std::cout << "----- Sinirda decGrade (grade 150 -> too low) -----" << std::endl;
@@ -42,6 +41,6 @@ int main()
 		Bureaucrat bottom("Bottom", 150);
 		bottom.decGrade();
 	} catch (std::exception& e) {
-		std::cout << "Caught: " << e.what() << std::endl;
+		std::cout << "Bottom: " << e.what() << std::endl;
 	}
 }

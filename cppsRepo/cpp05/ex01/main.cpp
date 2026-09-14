@@ -1,6 +1,5 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
-#include <iostream>
 
 int main()
 {
@@ -14,6 +13,8 @@ int main()
 
 	std::cout << "----- Form olusturma ve yazdirma -----" << std::endl;
 	Form form("EasyForm", 140, 140);
+	Form form2 = form;
+	// form2 = form;
 	std::cout << form << std::endl;
 
 	std::cout << "----- signForm basarili -----" << std::endl;

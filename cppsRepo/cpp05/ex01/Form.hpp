@@ -5,15 +5,15 @@
 #include <exception>
 #include <iostream>
 
-class Bureaucrat; // Incomplete type nesne oluşturamaz ve attributelere ulaşamazsın
+class Bureaucrat;
 
 class Form
 {
 	private:
 		const std::string	_name;
 		bool				_isSigned;
-		const int			_gradeToSign; // Formu imzalamak için min yetki
-		const int			_gradeToExecute; // Formu execute edebilmek için min yetki
+		const int			_gradeToSign;
+		const int			_gradeToExecute;
 	public:
 		Form();
 		Form(const std::string& name, int gradeToSign, int gradeToExecute);
