@@ -1,9 +1,7 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
-#define GREEN "\033[1;32m"
 #define RESET "\033[0m"
-#define BLUE "\033[1;34m"
 #define RED "\033[1;31m"
 #define GOLD "\033[38;5;214m"
 
@@ -20,7 +18,7 @@ class Bureaucrat
 		int					_grade;
 	public:
 		Bureaucrat();
-		Bureaucrat(const std::string& name, int grade); // Name'in ref olma sebebi const olduğu için gereksiz değişken oluşturmamak için
+		Bureaucrat(const std::string& name, int grade);
 		Bureaucrat(const Bureaucrat& copy);
 		Bureaucrat& operator=(const Bureaucrat& copy);
 		~Bureaucrat();
@@ -31,17 +29,16 @@ class Bureaucrat
 		void decGrade();
 		void signForm(AForm& form);
 		void executeForm(const AForm& form) const;
-
 		class GradeTooHighException : public std::exception {
+
 			public:
-				virtual const char* what() const throw(); // What:Dynamic dispatch
-		}; // Nested class
+				virtual const char* what() const throw();
+		};
 
 		class GradeTooLowException : public std::exception {
 			public:
 				virtual const char* what() const throw();
-		}; // Nested class
-
+		};
 };
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& b);
