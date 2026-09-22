@@ -15,7 +15,9 @@ int main()
 	std::cout << "Serialized value:     " << raw << std::endl;
 	std::cout << "Deserialized address: " << restored << std::endl;
 	std::cout << ((&original == restored) ? "Pointers match!" : "Pointers do NOT match!") << std::endl;
+	restored->id = 5;
 	std::cout << "restored->id = " << restored->id << std::endl;
+	std::cout << "restored->id = " << original.id << std::endl;
 	std::cout << "restored->name = " << restored->name << std::endl;
 	std::cout << "restored->value = " << restored->value << std::endl;
 	return 0;

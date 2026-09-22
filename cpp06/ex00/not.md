@@ -51,3 +51,90 @@ sonuna körü körüne `.0` ekleyip `2.14748e+09.0f` gibi bozuk çıktı
 üretiyordu. Çözüm: `.` veya `e`/`E` zaten string'de var mı diye kontrol
 edip, yoksa `.0` eklemek. Ders: kayan noktalı sayıyı stringe çevirirken
 formatın (normal mi, bilimsel mi) çıktığı biçimi asla varsaymayın.
+
+
+
+# static_cast — Detaylı Sistemsel Not
+
+## Ne yapar
+`static_cast<T>(expr)`, derleyicinin **derleme zamanında** bildiği, tipler
+arasında tanımlı bir dönüşüm ilişkisi olduğunda kullanılan cast'tir. Standart
+(`[expr.static.cast]`) hangi dönüşümlere izin verildiğini net olarak listeler:
+sayısal tipler arası (int↔float↔double↔char), enum↔int, `void*`↔`T*`, base↔derived
+pointer/reference (ilişkili sınıflar), ve explicit constructor/conversion
+operator çağrıları.
+
+## Derleme zamanında ne olur (sayısal dönüşümler için)
+`static_cast` bir "yorumlama" değil, gerçek bir **değer dönüşümüdür** — bit
+kalıbı değişir, çünkü int ve float tamamen farklı ikili temsillere sahiptir
+(int: two's complement; float/double: IEEE 754).
+
+Derleyici, hedef makine mimarisine göre gerçek CPU talimatları üretir:
+- `int → float/double`: FPU/SSE talimatı (x86-64'te `cvtsi2sd`) — tamsayı,
+  IEEE 754 kayan nokta formatına çevrilir.
+- `float/double → int`: `cvttsd2si` gibi bir "truncate" talimatı — ondalık kısım
+  **atılır** (yuvarlama değil, sıfıra doğru kesme).
+- `double → float`: mantissa 52 bitten 23 bite düşürülür, **hassasiyet kaybı**
+  olur (rounding). `float → double` ise kayıpsızdır (genişleme).
+- `char → int`: **sign extension** (`movsx`, işaretli ise) ya da **zero
+  extension** (`movzx`, unsigned ise) — üst bitler işarete göre doldurulur.
+
+Bunların hepsi **compile-time'da karar verilir**, çalışma zamanında hiçbir
+kontrol/lookup yapılmaz — bu yüzden `static_cast` sıfır runtime maliyetli bir
+cast'tir (tam tersine `dynamic_cast`, aşağıda).
+
+## Undefined Behavior riski
+`static_cast` **aralık kontrolü yapmaz**. `static_cast<int>(1e20)` gibi, hedef
+tipin temsil edemeyeceği bir değeri cast etmek **UB**'dir — bu yüzden
+`ScalarConverter.cpp`'de cast etmeden önce `INT_MIN`/`INT_MAX` ile manuel
+karşılaştırma yapıyoruz (`printInt`, `printChar`).
+
+Sınıf hiyerarşisinde de aynı tehlike var: `static_cast<Derived*>(basePtr)`
+derleyici tarafından **izin verilir** ama `basePtr` gerçekten bir `Derived`
+nesnesine işaret etmiyorsa UB'dir — çünkü hiçbir runtime kontrolü yoktur
+(bu tam olarak ex02'de `dynamic_cast`'in çözdüğü problem).
+
+## static_cast vs C-style cast `(T)expr`
+C-style cast, aslında "sırayla dene" mantığıyla çalışan bir **kara kutudur**:
+önce `const_cast` dener, olmazsa `static_cast`, o da olmazsa sessizce
+`reinterpret_cast`'e (gerekirse `const_cast` ile birleştirerek) düşer. Yani:
+- Niyetini kodda belli etmez — okuyan biri "bu sayısal bir dönüşüm mü, yoksa
+  tehlikeli bir pointer reinterpretation mı?" ayrımını göremez.
+- Yanlışlıkla `const`'u kırabilir veya alakasız pointer tiplerini
+  reinterpret edebilir, derleyici hiç uyarmaz.
+- `grep`lemesi bile zordur (`(int)x` ile normal parantez ayırt edilemez),
+  `static_cast<int>(x)` ise kod tabanında aranabilir/görünürdür.
+
+`static_cast`, sadece **tanımlı ilişkili** dönüşümlere izin vererek bunu
+derleme zamanında sınırlar — geçersiz bir `static_cast<T>(x)` **derleme
+hatası** verir, C-style cast ise neredeyse hiçbir şeyi reddetmez.
+
+## static_cast vs reinterpret_cast
+- `static_cast`: tipler arasında **anlamlı/tanımlı** bir dönüşüm ilişkisi
+  olmalı (int→float gibi, ya da ilişkili class hiyerarşisi).
+- `reinterpret_cast`: hiçbir dönüşüm mantığı yoktur, **bit kalıbı olduğu gibi**
+  başka bir tipmiş gibi yeniden yorumlanır (ör. pointer↔integer — tam olarak
+  ex01'deki `Serializer`). Alakasız pointer tipleri arasında da kullanılabilir,
+  bu da strict aliasing kurallarını çiğneyip UB üretebilir.
+
+## static_cast vs dynamic_cast
+- `static_cast` derleme zamanı kontrolü yapar, **runtime kontrolü yapmaz** —
+  yanlış varsayımda UB.
+- `dynamic_cast`, polymorphic (virtual fonksiyonlu) sınıflarda, **RTTI**
+  (vtable üzerinden gerçek tip bilgisi) kullanarak **çalışma zamanında**
+  kontrol eder; pointer'da başarısızlıkta `NULL`, reference'ta `std::bad_cast`
+  fırlatır. Bu güvenlik, ekstra runtime maliyeti (vtable lookup) ile gelir.
+
+## static_cast vs const_cast
+`const_cast` tamamen farklı bir amaca hizmet eder: tip değişmez, sadece
+`const`/`volatile` niteleyicisi eklenir/kaldırılır. `static_cast` ile
+const'u kırmaya çalışmak derleme hatası verir — bu ikisi kesişmez.
+
+## Özet tablo
+| Cast              | Kontrol zamanı | Amaç                                   |
+|-------------------|----------------|------------------------------------------|
+| static_cast       | derleme        | ilişkili/tanımlı tip dönüşümleri         |
+| dynamic_cast      | çalışma zamanı | polymorphic hiyerarşide gerçek tip       |
+| reinterpret_cast  | yok            | bit kalıbını olduğu gibi yeniden yorumla |
+| const_cast        | derleme        | sadece const/volatile ekle/çıkar         |
+| C-style cast      | belirsiz       | yukarıdakilerin hepsini sessizce dener   |
