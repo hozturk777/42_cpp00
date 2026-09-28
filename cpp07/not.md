@@ -92,3 +92,8 @@ Aslında mini bir `std::vector`.
 - Deep copy vs shallow copy, self-assignment neden kontrol edilir?
 - `operator[]`'ün const versiyonu neden gerekli?
 - `iter`'e `print` yerine neden `print<int>` geçtin?
+
+
+
+"Template, farklı tipler için aynı işi yapan fonksiyonları tek tek overload etmek yerine bir kez yazdığımız bir şablondur. Derleyici, kullanıldığı tipe göre derleme zamanında o fonksiyonu üretir. Şablonun içinde kullandığım operatörler (<, >, = gibi) o tipte tanımlı olmalıdır. Kendi sınıfımı kullanıyorsam o operatörleri overload etmem gerekir, yoksa derleme hatası alırım."
+

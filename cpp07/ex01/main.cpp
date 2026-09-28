@@ -44,7 +44,5 @@ int main(void)
 	iter(sarr, static_cast<size_t>(3), printElem<std::string>);
 	std::cout << std::endl;
 
-	std::cout << GREEN << "OK" << RESET << std::endl;
-
 	return (0);
 }

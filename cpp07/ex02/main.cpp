@@ -58,5 +58,7 @@ int main(void)
 
 	std::cout << GREEN << "OK" << RESET << std::endl;
 
+	Array<int> test[1];
+
 	return (0);
 }
