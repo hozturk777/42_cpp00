@@ -16,7 +16,7 @@ class Array
 		{
 		}
 
-		Array(unsigned int n) : _data(new T[n]), _size(n)
+		Array(unsigned int n) : _data(new T[n]()), _size(n)
 		{
 		}
 

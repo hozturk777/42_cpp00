@@ -16,6 +16,8 @@ int main(void)
 	std::cout << YELLOW << "-- ctor with n, default-initialized --" << RESET << std::endl;
 	Array<int> a(5);
 	for (size_t i = 0; i < a.size(); ++i)
+		std::cout << "a[" << i << "] = " << a[i] << " (default)" << std::endl;
+	for (size_t i = 0; i < a.size(); ++i)
 		a[i] = static_cast<int>(i * 10);
 	for (size_t i = 0; i < a.size(); ++i)
 		std::cout << "a[" << i << "] = " << a[i] << std::endl;
@@ -30,6 +32,10 @@ int main(void)
 	c = a;
 	c[1] = 111;
 	std::cout << "a[1] = " << a[1] << " (unchanged), c[1] = " << c[1] << std::endl;
+
+	std::cout << YELLOW << "-- const Array: const operator[] --" << RESET << std::endl;
+	Array<int> const &ref = a;
+	std::cout << "ref[2] = " << ref[2] << ", size = " << ref.size() << std::endl;
 
 	std::cout << YELLOW << "-- string Array --" << RESET << std::endl;
 	Array<std::string> s(3);

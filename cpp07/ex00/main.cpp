@@ -29,5 +29,13 @@ int main(void)
 	std::cout << "min(c, d) = " << GREEN << ::min(c, d) << RESET << std::endl;
 	std::cout << "max(c, d) = " << GREEN << ::max(c, d) << RESET << std::endl;
 
+	std::cout << YELLOW << "-- equal values: must return the second one --" << RESET << std::endl;
+
+	int x = 5;
+	int y = 5;
+
+	std::cout << "min(x, y) is y: " << GREEN << (&::min(x, y) == &y ? "true" : "false") << RESET << std::endl;
+	std::cout << "max(x, y) is y: " << GREEN << (&::max(x, y) == &y ? "true" : "false") << RESET << std::endl;
+
 	return (0);
 }
