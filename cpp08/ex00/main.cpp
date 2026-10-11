@@ -50,5 +50,20 @@ int main(void)
 		std::cout << RED << "lst: " << e.what() << RESET << std::endl;
 	}
 
+	std::cout << "----------------------" << std::endl;
+
+	std::vector<int> test;
+	test.push_back(1);
+	test.push_back(2);
+	test.push_back(3);
+
+	std::cout << test.capacity() << std::endl;
+
+
+
+	std::cout << "----------------------" << std::endl;
+
+
+
 	return 0;
 }
