@@ -50,20 +50,16 @@ int main(void)
 		std::cout << RED << "lst: " << e.what() << RESET << std::endl;
 	}
 
-	std::cout << "----------------------" << std::endl;
-
-	std::vector<int> test;
-	test.push_back(1);
-	test.push_back(2);
-	test.push_back(3);
-
-	std::cout << test.capacity() << std::endl;
-
-
-
-	std::cout << "----------------------" << std::endl;
-
-
+	std::vector<int> const cvec(vec);
+	try
+	{
+		std::vector<int>::const_iterator it = easyfind(cvec, 8);
+		std::cout << GREEN << "const vec: found " << *it << RESET << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << RED << "const vec: " << e.what() << RESET << std::endl;
+	}
 
 	return 0;
 }

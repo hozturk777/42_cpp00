@@ -2,6 +2,7 @@
 #define SPAN_HPP
 
 #include <vector>
+#include <iterator>
 #include <stdexcept>
 
 class Span
