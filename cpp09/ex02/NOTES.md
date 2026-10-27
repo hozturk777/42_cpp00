@@ -63,7 +63,9 @@ b2=4 → a2=6'nın solunda ara: [1 3 5]        → [1 3 4 5 6 7 8]
 b4=2 → a4=8'in solunda ara:  [1 3 4 5 6 7]  → [1 2 3 4 5 6 7 8]
 ```
 
-- En sonda straggler varsa tüm zincirde aranarak eklenir.
+- Straggler varsa `b(k+1)` sayılır ve Jacobsthal sırasına **dahil edilir**.
+- `a`'sı olmadığı için tüm zincirde aranır.
+- En sona bırakılırsa zincir dolmuş olur, fazladan karşılaştırma yapılır.
 
 ## Adım 5: Jacobsthal sırası
 - `b`'ler 2, 3, 4… diye sırayla eklenmez.
@@ -93,16 +95,20 @@ b4=2 → a4=8'in solunda ara:  [1 3 4 5 6 7]  → [1 2 3 4 5 6 7 8]
 çiftler: (5,3) (9,7)   straggler: 4
 a sıralı: 5 9   →   b1=3, b2=7
 ana zincir: [3 5 9]
-b2=7 → 9'un solunda ara [3 5]   → [3 5 7 9]
-straggler 4 → tüm zincirde ara  → [3 4 5 7 9]
+sıra: b3 (straggler 4), sonra b2 (7)
+b3=4 → tüm zincirde ara [3 5 9]   → [3 4 5 9]
+b2=7 → 9'un solunda ara [3 4 5]   → [3 4 5 7 9]
 ```
+- Toplam 7 karşılaştırma: 5 sayı için teorik en az değer.
 
 ## Container seçimi
 - `map`, `stack`, `list` önceki exercise'larda kullanıldı → yasak.
 - `std::vector` ve `std::deque`:
   - İkisi de indeksle erişim verir (`v[i]`) → binary search için gerekli.
   - İkisi de ortaya eleman ekleyebilir (`insert`).
-- Subject: algoritmayı her container için **ayrı** yaz, generic template kullanma.
+- Subject ayrı implementasyonu **tavsiye ediyor** ("strongly advised"), zorunlu tutmuyor.
+- Bu projede algoritma tek bir template (`fordJohnson`) olarak `PmergeMe.hpp`'de.
+- Template olduğu için implementasyonun header'da olması 42 kurallarına uygun.
 
 ## Çıktı formatı
 ```

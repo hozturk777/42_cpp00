@@ -23,8 +23,8 @@ class Span
 			_numbers.insert(_numbers.end(), first, last);
 		}
 
-		int shortestSpan() const;
-		int longestSpan() const;
+		long shortestSpan() const;
+		long longestSpan() const;
 
 	private:
 		Span();
