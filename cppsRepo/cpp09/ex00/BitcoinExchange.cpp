@@ -18,7 +18,6 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
 
 BitcoinExchange::~BitcoinExchange() {}
 
-// Bastaki ve sondaki bosluk / tab / '\r' karakterlerini atar (Windows satir sonlari icin)
 static std::string trim(const std::string& s)
 {
 	std::string::size_type start = s.find_first_not_of(" \t\r");
@@ -28,7 +27,6 @@ static std::string trim(const std::string& s)
 	return s.substr(start, end - start + 1);
 }
 
-// YYYY-MM-DD formati + ay araligi + ayin gun sayisi (artik yil dahil)
 bool BitcoinExchange::isValidDate(const std::string& date) const
 {
 	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
@@ -54,8 +52,6 @@ bool BitcoinExchange::isValidDate(const std::string& date) const
 	return day <= days[month - 1];
 }
 
-// Sadece [-]rakamlar[.rakamlar] formatini kabul eder; aralik kontrolu cagiran tarafta
-// ('-' kabul edilir ki negatif deger "not a positive number" hatasini alabilsin)
 bool BitcoinExchange::parseValue(const std::string& str, double& value) const
 {
 	size_t i = 0;
@@ -85,7 +81,6 @@ bool BitcoinExchange::parseValue(const std::string& str, double& value) const
 	return true;
 }
 
-// upper_bound: tarihten kesin buyuk ilk eleman. Bir geri = esit ya da en yakin alt tarih.
 double BitcoinExchange::getRate(const std::string& date) const
 {
 	std::map<std::string, double>::const_iterator it = _db.upper_bound(date);
@@ -102,7 +97,7 @@ void BitcoinExchange::loadDatabase(const std::string& path)
 		throw std::runtime_error("could not open database.");
 
 	std::string line;
-	std::getline(file, line); // "date,exchange_rate" basligi
+	std::getline(file, line);
 	while (std::getline(file, line))
 	{
 		line = trim(line);
@@ -169,7 +164,6 @@ void BitcoinExchange::processInput(const std::string& path) const
 	bool first = true;
 	while (std::getline(file, line))
 	{
-		// Ilk satir baslik ise atla; degilse normal satir gibi isle
 		if (first)
 		{
 			first = false;

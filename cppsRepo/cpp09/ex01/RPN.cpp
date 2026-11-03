@@ -17,8 +17,6 @@ RPN& RPN::operator=(const RPN& other)
 
 RPN::~RPN() {}
 
-// Ustteki iki sayiyi alir, islemi yapar, sonucu geri koyar.
-// Ilk cikan sagdaki (b), ikinci cikan soldaki (a) operand'dir: a op b
 void RPN::applyOperator(char op)
 {
 	if (_stack.size() < 2)
@@ -41,7 +39,6 @@ void RPN::applyOperator(char op)
 			throw std::runtime_error("division by zero");
 		result = a / b;
 	}
-	// Degerler int araliginda tutulur; boylece bir sonraki carpim long'u tasirmaz
 	if (result > INT_MAX || result < INT_MIN)
 		throw std::runtime_error("overflow");
 	_stack.push(result);
@@ -56,7 +53,6 @@ long RPN::evaluate(const std::string& expr)
 	std::string token;
 	while (iss >> token)
 	{
-		// Her token tek karakter olmali: 0-9 arasi rakam ya da + - * /
 		if (token.size() != 1)
 			throw std::runtime_error("invalid token");
 		char c = token[0];

@@ -17,7 +17,6 @@ int main(int argc, char** argv)
 
 	try
 	{
-		// Sure = veri yonetimi (parse + doldurma) + siralama
 		std::clock_t start = std::clock();
 		pm.loadVector(argc, argv);
 		pm.sortVector();

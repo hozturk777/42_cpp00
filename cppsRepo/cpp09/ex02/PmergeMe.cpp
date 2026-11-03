@@ -25,7 +25,6 @@ const std::vector<int>& PmergeMe::getVector() const { return _vec; }
 
 const std::deque<int>& PmergeMe::getDeque() const { return _deq; }
 
-// Sadece rakamlardan olusan, 1 ile INT_MAX arasindaki sayiyi kabul eder
 static int parseNumber(const std::string& token)
 {
 	if (token.empty())

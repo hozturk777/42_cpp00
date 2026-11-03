@@ -8,7 +8,6 @@
 class RPN
 {
 private:
-	// stack varsayilan olarak deque kullanir; deque ex02'de lazim, o yuzden list
 	std::stack<long, std::list<long> >	_stack;
 
 	void	applyOperator(char op);
